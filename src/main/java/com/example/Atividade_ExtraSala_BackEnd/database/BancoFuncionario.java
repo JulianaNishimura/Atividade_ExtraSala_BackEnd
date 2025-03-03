@@ -1,4 +1,58 @@
 package com.example.Atividade_ExtraSala_BackEnd.database;
 
+import com.example.Atividade_ExtraSala_BackEnd.model.Funcionario;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class BancoFuncionario {
+    private static BancoFuncionario instance;
+    private List<Funcionario> funcionarios = new ArrayList<>();
+
+    public static BancoFuncionario getInstance() {
+        if (instance == null) {
+            instance = new BancoFuncionario();
+        }
+        return instance;
+    }
+
+    public void insertFuncionario(Funcionario f) {
+        funcionarios.add(f);
+    }
+
+    public Funcionario findOneFuncionario(int id) {
+        for (Funcionario f : funcionarios) {
+            if (f.getId() == id) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    public List<Funcionario> findAllFuncionario() {
+        return new ArrayList<>(funcionarios);
+    }
+
+    public boolean updateFuncionario(Funcionario f) {
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (funcionarios.get(i).getId() == f.getId()) {
+                funcionarios.set(i, f);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteFuncionario(int id) {
+        return funcionarios.removeIf(f -> f.getId() == id);
+    }
+
+    public Funcionario findByNomeFuncionario(String nome) {
+        for (Funcionario f : funcionarios) {
+            if (f.getNome().equalsIgnoreCase(nome)) {
+                return f;
+            }
+        }
+        return null;
+    }
 }

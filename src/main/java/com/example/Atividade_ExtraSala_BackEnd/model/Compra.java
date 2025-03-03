@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Compra {
+    private Integer id;
     private Fornecedor fornecedor;
     private Double valor;
     private ZonedDateTime data_compra;

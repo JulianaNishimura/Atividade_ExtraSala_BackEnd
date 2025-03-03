@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Venda {
+    private Integer id;
     private Cliente cliente;
     private List<Produto> produtos = new ArrayList<>();
     private Double valor_final_venda;
