@@ -21,7 +21,7 @@ public class BancoCliente {
 
     public Cliente findOneCliente(int id){
         for (Cliente c : clientes){
-            if (c.getIdCliente() == id){
+            if (c.getId() == id){
                 return c;
             }
         }
@@ -34,7 +34,7 @@ public class BancoCliente {
 
     public boolean updateCliente(Cliente c){
         for(int i = 0; i < clientes.size();i++){
-            if(clientes.get(i).getIdCliente() == c.getIdCliente()){
+            if(clientes.get(i).getId() == c.getId()){
                 clientes.set(i,c);
                 return true;
             }
@@ -43,6 +43,6 @@ public class BancoCliente {
     }
 
     public boolean deleteCliente(int id){
-        return clientes.removeIf(c -> c.getIdCliente() == id);
+        return clientes.removeIf(c -> c.getId() == id);
     }
 }
