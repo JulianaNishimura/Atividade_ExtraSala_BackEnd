@@ -3,7 +3,6 @@ package com.example.Atividade_ExtraSala_BackEnd.view;
 import com.example.Atividade_ExtraSala_BackEnd.controller.ClienteController;
 import com.example.Atividade_ExtraSala_BackEnd.model.Cliente;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
