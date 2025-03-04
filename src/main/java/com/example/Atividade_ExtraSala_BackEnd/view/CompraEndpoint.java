@@ -17,9 +17,8 @@ public class CompraEndpoint {
     }
 
     @PostMapping
-    public String postInformationsCompras(@RequestBody Compra compra) {
-        cc.postarCompra(compra);
-        return "Sucesso ao cadastrar";
+    public boolean postInformationsCompras(@RequestBody Compra compra) {
+        return cc.postarCompra(compra);
     }
 
     @PutMapping

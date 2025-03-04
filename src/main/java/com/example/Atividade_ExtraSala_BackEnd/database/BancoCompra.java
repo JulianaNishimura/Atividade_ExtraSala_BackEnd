@@ -47,12 +47,4 @@ public class BancoCompra {
         return compras.removeIf(c -> c.getId() == id);
     }
 
-    public Compra findByFornecedorCompra(String fornecedorNome) {
-        for (Compra c : compras) {
-            if (c.getFornecedor().getNome().equalsIgnoreCase(fornecedorNome)) {
-                return c;
-            }
-        }
-        return null;
-    }
 }

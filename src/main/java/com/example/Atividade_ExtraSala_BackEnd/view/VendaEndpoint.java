@@ -18,9 +18,8 @@ public class VendaEndpoint {
     }
 
     @PostMapping
-    public String postInformationsVendas(@RequestBody Venda venda) {
-        cv.postarVenda(venda);
-        return "Sucesso ao Cadastrar!";
+    public boolean postInformationsVendas(@RequestBody Venda venda) {
+        return cv.postarVenda(venda);
     }
 
     @PutMapping

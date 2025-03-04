@@ -47,12 +47,4 @@ public class BancoVenda {
         return vendas.removeIf(v -> v.getId() == id);
     }
 
-    public Venda findByClienteVenda(String clienteNome) {
-        for (Venda v : vendas) {
-            if (v.getCliente().getNome().equalsIgnoreCase(clienteNome)) {
-                return v;
-            }
-        }
-        return null;
-    }
 }

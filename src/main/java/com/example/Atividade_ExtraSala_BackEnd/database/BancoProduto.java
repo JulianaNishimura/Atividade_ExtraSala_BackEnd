@@ -47,12 +47,4 @@ public class BancoProduto {
         return produtos.removeIf(p -> p.getId() == id);
     }
 
-    public Produto findByNomeProduto(String nome) {
-        for (Produto p : produtos) {
-            if (p.getNome().equalsIgnoreCase(nome)) {
-                return p;
-            }
-        }
-        return null;
-    }
 }

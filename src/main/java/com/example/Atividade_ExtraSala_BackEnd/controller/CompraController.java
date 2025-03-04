@@ -1,25 +1,32 @@
 package com.example.Atividade_ExtraSala_BackEnd.controller;
 
 import com.example.Atividade_ExtraSala_BackEnd.database.BancoCompra;
+import com.example.Atividade_ExtraSala_BackEnd.database.BancoFornecedor;
 import com.example.Atividade_ExtraSala_BackEnd.model.Compra;
 import java.util.List;
 
 public class CompraController {
-    BancoCompra banco = BancoCompra.getInstance();
+    BancoCompra bancoCompra = BancoCompra.getInstance();
+    BancoFornecedor bancoFornecedor = BancoFornecedor.getInstance();
 
     public List<Compra> listarCompra() {
-        return banco.findAllCompra();
+        return bancoCompra.findAllCompra();
     }
 
-    public void postarCompra(Compra compra) {
-        banco.insertCompra(compra);
+    public boolean postarCompra(Compra compra) {
+        if(bancoFornecedor.findOneFornecedor(compra.getFornecedor().getId())==null){
+            return false;
+        }
+
+        bancoCompra.insertCompra(compra);
+        return true;
     }
 
     public boolean atualizarCompra(Compra compra) {
-        return banco.updateCompra(compra);
+        return bancoCompra.updateCompra(compra);
     }
 
     public boolean deletarCompra(int id) {
-        return banco.deleteCompra(id);
+        return bancoCompra.deleteCompra(id);
     }
 }

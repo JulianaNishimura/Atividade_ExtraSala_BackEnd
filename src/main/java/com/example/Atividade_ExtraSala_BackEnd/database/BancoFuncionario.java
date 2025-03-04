@@ -47,12 +47,4 @@ public class BancoFuncionario {
         return funcionarios.removeIf(f -> f.getId() == id);
     }
 
-    public Funcionario findByNomeFuncionario(String nome) {
-        for (Funcionario f : funcionarios) {
-            if (f.getNome().equalsIgnoreCase(nome)) {
-                return f;
-            }
-        }
-        return null;
-    }
 }

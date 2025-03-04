@@ -12,10 +12,20 @@ public class ProdutoController {
     }
 
     public void postarProduto(Produto produto) {
+        if (produto.getQuantidade_estoque().getQuantidade() > 0){
+            produto.setStatus(true);
+        } else {
+            produto.setStatus(false);
+        }
         banco.insertProduto(produto);
     }
 
     public boolean atualizarProduto(Produto produto) {
+        if (produto.getQuantidade_estoque().getQuantidade() > 0){
+            produto.setStatus(true);
+        } else {
+            produto.setStatus(false);
+        }
         return banco.updateProduto(produto);
     }
 
