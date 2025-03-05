@@ -14,7 +14,7 @@ public class Produto {
     private String nome;
     private String categoria;
     private Double preco;
-    private Estoque quantidade_estoque;
+    private Integer quantidade_estoque;
     private Boolean status;
 
 }

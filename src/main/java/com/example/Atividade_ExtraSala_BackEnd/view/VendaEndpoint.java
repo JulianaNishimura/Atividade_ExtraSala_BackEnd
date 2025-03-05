@@ -32,7 +32,7 @@ public class VendaEndpoint {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteInformationsVendas(@RequestParam int id) {
+    public String deleteInformationsVendas(@PathVariable int id) {
         if (cv.deletarVenda(id)) {
             return "Deletado com sucesso!";
         } else {

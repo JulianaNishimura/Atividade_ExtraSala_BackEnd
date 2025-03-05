@@ -31,7 +31,7 @@ public class CompraEndpoint {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteInformationsCompras(@RequestParam int id) {
+    public String deleteInformationsCompras(@PathVariable int id) {
         if (cc.deletarCompra(id)) {
             return "Deletado com sucesso";
         } else {

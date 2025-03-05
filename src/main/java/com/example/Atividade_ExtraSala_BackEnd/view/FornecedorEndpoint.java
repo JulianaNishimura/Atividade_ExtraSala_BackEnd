@@ -32,7 +32,7 @@ public class FornecedorEndpoint {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteInformationsFornecedores(@RequestParam int id) {
+    public String deleteInformationsFornecedores(@PathVariable int id) {
         if (cf.deletarFornecedor(id)) {
             return "Deletado com sucesso";
         } else {

@@ -12,7 +12,7 @@ public class ProdutoController {
     }
 
     public void postarProduto(Produto produto) {
-        if (produto.getQuantidade_estoque().getQuantidade() > 0){
+        if (produto.getQuantidade_estoque() > 0){
             produto.setStatus(true);
         } else {
             produto.setStatus(false);
@@ -21,7 +21,7 @@ public class ProdutoController {
     }
 
     public boolean atualizarProduto(Produto produto) {
-        if (produto.getQuantidade_estoque().getQuantidade() > 0){
+        if (produto.getQuantidade_estoque() > 0){
             produto.setStatus(true);
         } else {
             produto.setStatus(false);

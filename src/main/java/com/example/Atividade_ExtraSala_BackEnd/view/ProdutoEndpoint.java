@@ -33,7 +33,7 @@ public class ProdutoEndpoint {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteInformationsProduto(@RequestParam int id) {
+    public String deleteInformationsProduto(@PathVariable int id) {
         if (cp.deletarProduto(id)) {
             return "Deletado com sucesso";
         } else {

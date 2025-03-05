@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Estoque {
+public class VendaProduto {
     private Produto produto;
-    private Integer quantidade;
-
+    private Integer quantidadeComprada;
 }

@@ -32,7 +32,7 @@ public class FuncionarioEndpoint {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteInformationsFuncionarios(@RequestParam int id) {
+    public String deleteInformationsFuncionarios(@PathVariable int id) {
         if (cf.deletarFuncionario(id)) {
             return "Deletado com sucesso";
         } else {

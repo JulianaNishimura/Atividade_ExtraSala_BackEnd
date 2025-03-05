@@ -32,7 +32,7 @@ public class ClienteEndpoint {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteInformationsCliente(@RequestParam int id){
+    public String deleteInformationsCliente(@PathVariable int id){
         if(cc.deletarCliente(id)){
             return "Deletado com sucesso";
         } else {

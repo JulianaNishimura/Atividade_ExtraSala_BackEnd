@@ -3,9 +3,11 @@ package com.example.Atividade_ExtraSala_BackEnd.controller;
 import com.example.Atividade_ExtraSala_BackEnd.database.BancoCliente;
 import com.example.Atividade_ExtraSala_BackEnd.database.BancoProduto;
 import com.example.Atividade_ExtraSala_BackEnd.database.BancoVenda;
-import com.example.Atividade_ExtraSala_BackEnd.model.Cliente;
+
 import com.example.Atividade_ExtraSala_BackEnd.model.Produto;
 import com.example.Atividade_ExtraSala_BackEnd.model.Venda;
+import com.example.Atividade_ExtraSala_BackEnd.model.VendaProduto;
+
 import java.util.List;
 
 public class VendaController {
@@ -18,7 +20,7 @@ public class VendaController {
     }
 
     public boolean postarVenda(Venda venda) {
-        List<Produto> listaProdutoVendido = venda.getProdutos();
+        List<VendaProduto> listaProdutoVendido = venda.getProdutos();
         double valor = 0.0;
         int quantidadeatualizada;
         Produto produtonobanco;
@@ -27,18 +29,18 @@ public class VendaController {
             return false;
         }
 
-        for(Produto p : listaProdutoVendido){
-            if(bancoProduto.findOneProduto(p.getId())==null){
+        for(VendaProduto p : listaProdutoVendido){
+            if(bancoProduto.findOneProduto(p.getProduto().getId())==null){
                 return false;
             } else {
-                produtonobanco = bancoProduto.findOneProduto(p.getId());
-                if (produtonobanco.getQuantidade_estoque().getQuantidade() < p.getQuantidade_estoque().getQuantidade()) {
+                produtonobanco = bancoProduto.findOneProduto(p.getProduto().getId());
+                if (produtonobanco.getQuantidade_estoque() < p.getQuantidadeComprada()) {
                     return false;
                 }
 
-                valor = valor + (p.getPreco() * p.getQuantidade_estoque().getQuantidade());
-                quantidadeatualizada = produtonobanco.getQuantidade_estoque().getQuantidade() - p.getQuantidade_estoque().getQuantidade();
-                produtonobanco.getQuantidade_estoque().setQuantidade(quantidadeatualizada);
+                valor = valor + (produtonobanco.getPreco() * p.getQuantidadeComprada());
+                quantidadeatualizada = produtonobanco.getQuantidade_estoque() - p.getQuantidadeComprada();
+                produtonobanco.setQuantidade_estoque(quantidadeatualizada);
                 bancoProduto.updateProduto(produtonobanco);
             }
         }
@@ -48,20 +50,20 @@ public class VendaController {
     }
 
     public boolean atualizarVenda(Venda venda) {
-        List<Produto> listaProdutoVendido = venda.getProdutos();
+        List<VendaProduto> listaProdutoVendido = venda.getProdutos();
         double valor = 0.0;
         int quantidadeatualizada;
         Produto produtonobanco;
 
-        for(Produto p : listaProdutoVendido){
-            produtonobanco = bancoProduto.findOneProduto(p.getId());
-            if (produtonobanco.getQuantidade_estoque().getQuantidade() < p.getQuantidade_estoque().getQuantidade()) {
+        for(VendaProduto p : listaProdutoVendido){
+            produtonobanco = bancoProduto.findOneProduto(p.getProduto().getId());
+            if (produtonobanco.getQuantidade_estoque() < p.getQuantidadeComprada()) {
                 return false;
             }
 
-            valor = valor + (p.getPreco() * p.getQuantidade_estoque().getQuantidade());
-            quantidadeatualizada = produtonobanco.getQuantidade_estoque().getQuantidade() - p.getQuantidade_estoque().getQuantidade();
-            produtonobanco.getQuantidade_estoque().setQuantidade(quantidadeatualizada);
+            valor = valor + (produtonobanco.getPreco() * p.getQuantidadeComprada());
+            quantidadeatualizada = produtonobanco.getQuantidade_estoque() - p.getQuantidadeComprada();
+            produtonobanco.setQuantidade_estoque(quantidadeatualizada);
             bancoProduto.updateProduto(produtonobanco);
         }
         venda.setValor_final_venda(valor);

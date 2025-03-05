@@ -16,7 +16,7 @@ import java.util.List;
 public class Venda {
     private Integer id;
     private Cliente cliente;
-    private List<Produto> produtos = new ArrayList<>();
+    private List<VendaProduto> produtos = new ArrayList<>();
     private Double valor_final_venda;
     private ZonedDateTime data_venda;
 
